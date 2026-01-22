@@ -1,1 +1,11 @@
-{"version":4,"routes":{"/blog/hello-world":{},"/blog/test":{}},"dynamicRoutes":{"/blog/[slug]":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/blog/[slug]","routeRegex":"^\\/blog\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"6b9907fb360b05e77090a07f77b938e2","previewModeSigningKey":"5af6867ea11bbdf1f9b7dc816395130764d0cec3b063e86f296f44d9364e0390","previewModeEncryptionKey":"44bf1113def3e7075ae551b42827f3ae2892d1130907bb6884fefdf859811b54"}}
+{
+  "version": 4,
+  "routes": {},
+  "dynamicRoutes": {},
+  "notFoundRoutes": [],
+  "preview": {
+    "previewModeId": "70648f7b6519a6f1b7f3c88f19dd5885",
+    "previewModeSigningKey": "18d86dcb2edc9916c234cacc4a4813464fce4aa19d966e307eed027fe209c3bd",
+    "previewModeEncryptionKey": "606220ffef4050b4afd9e542659928b5b44c020c8f947d41743e4491020c1389"
+  }
+}

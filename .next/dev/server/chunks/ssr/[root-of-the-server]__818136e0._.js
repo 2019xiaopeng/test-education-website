@@ -198,7 +198,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$tina$2f$_$5f$generated_$5f2f
 ;
 const client = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$tinacms$2f$dist$2f$client$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["createClient"])({
     url: 'http://localhost:4001/graphql',
-    token: 'null',
+    token: 'undefined',
     queries: __TURBOPACK__imported__module__$5b$project$5d2f$tina$2f$_$5f$generated_$5f2f$types$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["queries"]
 });
 const __TURBOPACK__default__export__ = client;
