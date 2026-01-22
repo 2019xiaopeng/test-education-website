@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 14, "column": 0}, "map": {"version":3,"sources":["file:///F:/qcb-dev/app/admin/page.tsx"],"sourcesContent":["import { redirect } from \"next/navigation\";\n\nexport default function AdminRedirectPage() {\n  redirect(\"/admin/index.html\");\n}\n\n"],"names":[],"mappings":";;;;AAAA;AAAA;;AAEe,SAAS;IACtB,IAAA,iMAAQ,EAAC;AACX"}}]
-}
