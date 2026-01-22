@@ -8,16 +8,25 @@ export async function generateStaticParams() {
   return paths.map((path) => path.params);
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const postData = await getPostData(params.slug);
+// Next.js 15 breaking change: params is now a Promise
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const postData = await getPostData(slug);
   return {
     title: `${postData.title} | qcb`,
     description: postData.description,
   };
 }
 
-export default async function Post({ params }: { params: { slug: string } }) {
-  const postData = await getPostData(params.slug);
+// Next.js 15 breaking change: params is now a Promise
+export default async function Post({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const postData = await getPostData(slug);
+  
+  // Defensive date handling: handle both string and Date object
+  const dateStr = postData.date instanceof Date 
+    ? (postData.date as Date).toISOString() 
+    : String(postData.date);
 
   return (
     <main className="min-h-screen bg-slate-950 px-4 py-20">
@@ -33,14 +42,14 @@ export default async function Post({ params }: { params: { slug: string } }) {
         <header className="mb-12 border-b border-slate-800 pb-8">
           <div className="flex items-center gap-2 text-green-500/60 font-mono text-sm mb-4">
             <Terminal className="w-4 h-4" />
-            <span>log_entry_{postData.date.replace(/-/g, "")}.md</span>
+            <span>log_entry_{dateStr.split("T")[0].replace(/-/g, "")}.md</span>
           </div>
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 font-mono leading-tight">
             {postData.title}
           </h1>
           <div className="flex flex-wrap items-center gap-4 text-slate-400 font-mono text-sm">
-            <time dateTime={postData.date} className="bg-slate-900 px-2 py-1 rounded border border-slate-800">
-              {postData.date}
+            <time dateTime={dateStr} className="bg-slate-900 px-2 py-1 rounded border border-slate-800">
+              {dateStr.split("T")[0]}
             </time>
             {postData.tags && postData.tags.map((tag: string) => (
               <span key={tag} className="text-green-500/80">#{tag}</span>

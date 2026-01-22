@@ -1,14 +1,26 @@
-import Link from "next/link";
-import { getSortedPostsData } from "@/lib/posts";
 import { BlogList } from "./blog-list";
+import { client } from "@/lib/tina-client";
 
 export const metadata = {
   title: "Security Logs | qcb",
   description: "Security research logs and development notes.",
 };
 
-export default function BlogIndex() {
-  const allPosts = getSortedPostsData();
+export default async function BlogIndex() {
+  let posts: any[] = [];
+  
+  try {
+      // Fetch posts from TinaCMS
+      const res = await client.queries.postConnection({
+        sort: "date",
+        last: 100, // Fetch recent 100 posts
+      });
+      
+      posts = res.data.postConnection.edges?.map((edge: any) => edge.node) || [];
+  } catch (e) {
+      console.error("Failed to fetch posts from TinaCMS:", e);
+      // We can leave posts as empty array to show "No signals detected" state
+  }
 
   return (
     <main className="min-h-screen bg-slate-950 px-4 py-20 pt-28">
@@ -25,12 +37,12 @@ export default function BlogIndex() {
           </p>
         </header>
 
-        <BlogList initialPosts={allPosts} />
+        <BlogList initialPosts={posts} />
         
         <div className="mt-16 pt-8 border-t border-slate-800 text-center">
-             <Link href="/" className="text-green-500 hover:text-green-400 font-mono text-sm underline decoration-dotted underline-offset-4">
-                cd /home
-             </Link>
+             <div className="text-xs text-slate-600 font-mono mb-4">
+                System Status: TinaCMS Integration Active
+             </div>
         </div>
       </div>
     </main>

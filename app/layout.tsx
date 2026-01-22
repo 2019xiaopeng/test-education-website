@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Personal portfolio and Chat-DLP home.",
 };
 
-import { Navbar } from "@/components/ui/navbar";
+import { Navbar } from "@/components/Navbar";
 
 export default function RootLayout({
   children,

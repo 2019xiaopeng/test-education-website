@@ -33,11 +33,15 @@ export function getSortedPostsData(): PostData[] {
       // Use gray-matter to parse the post metadata section
       const matterResult = matter(fileContents);
 
+      const date = matterResult.data.date 
+        ? (matterResult.data.date instanceof Date ? matterResult.data.date.toISOString() : String(matterResult.data.date))
+        : new Date().toISOString();
+
       // Combine the data with the id
       return {
         slug,
         title: matterResult.data.title || "",
-        date: matterResult.data.date || "",
+        date,
         description: matterResult.data.description || "",
         tags: matterResult.data.tags || [],
         content: matterResult.content, // Include content for search
@@ -78,11 +82,15 @@ export async function getPostData(slug: string): Promise<PostData> {
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
 
+  const date = matterResult.data.date 
+    ? (matterResult.data.date instanceof Date ? matterResult.data.date.toISOString() : String(matterResult.data.date))
+    : new Date().toISOString();
+
   return {
     slug,
     content: matterResult.content,
     title: matterResult.data.title || "",
-    date: matterResult.data.date || "",
+    date,
     description: matterResult.data.description || "",
     tags: matterResult.data.tags || [],
     ...matterResult.data,
