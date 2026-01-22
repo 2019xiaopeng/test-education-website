@@ -1,0 +1,4 @@
+Contact: mailto:your-email@example.com
+Expires: 2027-01-01T00:00:00.000Z
+Preferred-Languages: en, zh
+Policy: https://example.com/privacy
